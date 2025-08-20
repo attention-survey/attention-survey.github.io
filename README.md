@@ -1,2 +1,2 @@
 # attention_survey.github.io
-Efficient Attention Methods: A Comprehensive Survey
+A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention
