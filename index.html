@@ -55,7 +55,8 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title">Efficient Attention Methods: <br>  A Comprehensive Survey
+            <h1 class="title is-2 publication-title">A Survey of Efficient Attention Methods:  
+              <br> Hardware-efficient, Sparse, Compact, and Linear Attention
 
             </h1>
             <div class="is-size-5 publication-authors">
@@ -182,10 +183,11 @@
           <h2 class="title is-4">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              The attention operation is the only operator with a time complexity of O(N²) in modern transformers, 
-              while other operations have a complexity of O(N), where N represents the sequence length. 
-              As sequence lengths in generative models, e.g., language or video generation models, continue to grow longer, the optimization of attention efficiency becomes increasingly important. Recently, many excellent studies have emerged to improve the computational efficiency of attention. Generally, these works can be divided into four categories: (1) Hardware-efficient attention, (2) Sparse attention, (3) Compact attention, and (4) Linear attention. 
-              In this paper, we provide a comprehensive survey of these efficient attention methods.
+              In modern transformers, the attention operation is the only component with a time complexity of \(\mathcal{O}(N^2)\), whereas all other operations scale linearly as \(\mathcal{O}(N)\), 
+              where \(N\) denotes the sequence length. As sequence lengths in generative models (e.g., language and video generation) continue to increase, 
+              improving the efficiency of attention has become increasingly critical. 
+              Recently, numerous excellent works have been proposed to enhance the computational efficiency of attention operation. Broadly, these works can be classified into four categories: (1) Hardware-efficient attention: Optimizing attention computation efficiency by leveraging hardware characteristics.  (2) Sparse attention: Selectively performing a subset of computations in attention while omitting others. (3) Compact attention: Compressing the KV cache of attention by weight sharing or low rank decomposition while keeping computational cost unchanged, as with a full‑sized KV cache. (4) Linear attention: Redesigning the computational formulation of attention to achieve \(\mathcal{O}(N)\) time complexity. 
+              In this paper, we present a comprehensive survey of these efficient attention methods. 
             </p>
           </div>
         </div>
@@ -411,6 +413,19 @@
               Linear attention methods reduce the computational complexity from \(O(N^2)\) to \(O(N)\) by replacing the softmax function with a kernel function. This allows for a reordering of matrix multiplications, avoiding the explicit computation of the N×N attention matrix. For autoregressive tasks, these methods can be formulated in a recurrent manner, using a fixed-size state that is updated at each step. This makes them highly efficient for inference on very long sequences.
             </p>
           </div>
+
+          <h4 class="title is-5" style="margin-top: 2.5em;">Naive Formulation</h4>
+          <div class="content has-text-justified">
+            <p>
+              $$ 
+              \begin{aligned}
+                  H_t &= H_{t-1} + \phi(k_t)^\top v_t     \\
+                  o_t &= \phi(q_t)H_t
+              \end{aligned}
+            $$
+            </p>
+          
+          </div>
   
           <h4 class="title is-5" style="margin-top: 2.5em;">Computation Forms</h4>
           
@@ -436,7 +451,7 @@
             </p>
             <div>
               <p>
-                <strong>Chunk-wise Form.</strong> This form is a hybrid solution designed for efficient autoregressive training. It divides the sequence into fixed-size chunks and processes them sequentially, passing a recurrent hidden state between them. As the figure shows, the final attention output for each chunk is the sum of two distinct components:
+                <strong>Chunk-wise Form.</strong>  This form is a hybrid solution designed for autoregressive training, resolving the issues of the previous forms. It divides the sequence into fixed-size chunks and uses a dual strategy: Attention is computed in quadratic parallel form within each chunk to maximize parallelization. Causality is maintained by passing a recurrent state between chunks. As the figure shows, the final attention output for each chunk is the sum of two distinct components:
               </p>
               <ul style="margin-left: 2em; margin-top: 1em; margin-bottom: 1em;">
                 <li>
@@ -446,13 +461,10 @@
                   <strong>Inter-chunk Attention:</strong> This part incorporates historical information from all <em>previous</em> chunks. It is computed by combining the current chunk's Query with the hidden state passed from the prior chunk.
                 </li>
               </ul>
-              <p>
-                The hidden state is updated using the current chunk's Keys and Values, preparing it to be passed to the next chunk.
-              </p>
             </div>
           </div>
           
-          <h4 class="title is-5" style="margin-top: 2.5em;">Linear Attention with Gates</h4>
+          <h4 class="title is-5" style="margin-top: 2.5em;">Three Categories of Linear Attention</h4>
           <div class="content has-text-justified">
             <p>
               To enable the fixed-size hidden state \(H_t\)  to dynamically hold the most relevant information, the forget and select gates were introduced. Then the \(H_t\) update can be formulated as:
