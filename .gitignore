@@ -3,3 +3,7 @@ Gem*
 *.zip
 */__MACOSX
 /png_figs
+/node_modules
+pre-render-mathjax.js
+render.js
+replace-formulas.js
