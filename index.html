@@ -455,7 +455,7 @@
               </p>
               <ul style="margin-left: 2em; margin-top: 1em; margin-bottom: 1em;">
                 <li>
-                  <strong>Intra-chunk Attention:</strong> This part is computed using standard, parallel masked self-attention on the Query, Key, and Value matrices <em>within</em> the current chunk. It captures local dependencies inside the chunk.
+                  <strong>Intra-chunk Attention:</strong> This part is computed using standard, parallel masked self-attention on the Query, Key, and Value matrices within the current chunk. It captures local dependencies inside the chunk.
                 </li>
                 <li>
                   <strong>Inter-chunk Attention:</strong> This part incorporates historical information from all <em>previous</em> chunks. It is computed by combining the current chunk's Query with the hidden state passed from the prior chunk.
