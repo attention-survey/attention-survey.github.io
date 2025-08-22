@@ -354,7 +354,12 @@
           <h2 class="title is-4">3. Sparse Attention</h2>
           <div class="content has-text-justified">
             <p>
-              The attention map \(P = \mathrm{Softmax}(QK^\top / \sqrt{d})\) exhibits inherent sparsity, as the softmax operation often creates many values approaching zero. <em>Sparse attention</em> methods exploit such sparsity to accelerate attention by two steps. <strong>First</strong>, it constructs a <em>sparse mask</em> \(M\), which determines whether to compute or skip specific elements in the attention map \(P\). <strong>Second</strong>, it computes attention only for the parts corresponding to the <em>sparse mask</em> \(M\).
+              The attention map \(P = \mathrm{Softmax}(QK^\top / \sqrt{d})\) exhibits inherent sparsity, 
+              as the softmax operation often creates many values approaching zero. 
+              <em>Sparse attention</em> methods exploit such sparsity to accelerate attention by two steps. <strong>First</strong>, 
+              it constructs a <em>sparse mask</em> \(M\), 
+              which determines whether to compute or skip specific elements in the attention map \(P\). 
+              <strong>Second</strong>, it computes attention only for the parts corresponding to the <em>sparse mask</em> \(M\).
             </p>
             
             <div style="padding: 0.5em; border-radius: 6px; margin: 1em 0; text-align: center;">
@@ -367,7 +372,8 @@
             </div>
             
             <p>
-              Where \(M\) is an \(N \times N\) matrix whose elements are either 0 or \(-\infty\). \(M_{i,j} = 0\) specifies that both the attention score \(Q_iK_j^T\) and its corresponding output \(P_{i,j}V_j\) should be computed, while \(M_{i,j} = -\infty\) indicates these computations should be skipped.
+              Where \(M\) is an \(N \times N\) matrix whose elements are either 0 or \(-\infty\). \(M_{i,j} = 0\) specifies that both the attention score \(Q_iK_j^T\) and 
+              its corresponding output \(P_{i,j}V_j\) should be computed, while \(M_{i,j} = -\infty\) indicates these computations should be skipped.
             </p>
             
             <p>
@@ -447,7 +453,7 @@
               <strong>Linear Parallel Form.</strong> This form calculates the output \(O\), using \(O=\phi(Q)(\phi(K)^\top V)\), by computing the \(\phi(K)^T V\) first, the computational complexity is decreased to \(O(Nd^2)\). It is highly efficient for the training and inference of non-autoregressive (NAR) tasks, where the entire sequence is processed simultaneously. For autoregressive training, forcing causality with a mask \(O = (\phi(Q) \phi(K)^\top \odot M)V\).
             </p>
             <p>
-              <strong>Recurrent Form.</strong> This form introduces a fixed-size state \(H_t\) that is updated recurrently: \(H_t = H_{t-1} + \phi(k_t)^\top v_t\). The output is then computed as \(o_t=\phi(q_t)H_t\). When computing, it first computes the \(\phi(K)^T V\) and then updates the hidden state \(H_t\), finally compute \(o_t=\phi(q_t)H_t\).
+              <strong>Recurrent Form.</strong> This form introduces a fixed-size state \(H_t\) that is updated recurrently: \(H_t = H_{t-1} + \phi(k_t)^\top v_t\). The output is then computed as \(o_t=\phi(q_t)H_t\). When computing, it first computes the \(\phi(k_t)^T v_t\) and then updates the hidden state \(H_t\), finally compute \(o_t=\phi(q_t)H_t\).
             </p>
             <div>
               <p>
