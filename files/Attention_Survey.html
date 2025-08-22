@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+  <meta charset="utf-8">
+
+  <!-- Meta tags for SEO and social media banners -->
+  <meta name="description" content="A comprehensive survey of efficient attention methods, covering hardware-efficient, sparse, compact, and linear attention.">
+
+  <!-- Open Graph (Facebook, LinkedIn, WeChat, etc.) -->
+  <meta property="og:title" content="A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention" />
+  <meta property="og:description" content="We present a comprehensive overview of efficient attention methods, categorizing recent advances into hardware-efficient, sparse, compact, and linear approaches." />
+  <meta property="og:url" content="https://attention-survey.github.io/" />
+  <meta property="og:image" content="https://attention-survey.github.io/files/fig2.png" />
+  <meta property="og:image:width" content="2118" />
+  <meta property="og:image:height" content="1928" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:title" content="A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention">
+  <meta name="twitter:description" content="A comprehensive survey of efficient attention methods: hardware-efficient, sparse, compact, and linear attention.">
+  <meta name="twitter:image" content="https://attention-survey.github.io/files/fig2.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- SEO keywords -->
+  <meta name="keywords" content="efficient attention, transformer, survey, machine learning, deep learning, sparse attention, linear attention, compact attention, hardware-efficient">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <!-- Google Scholar metadata -->
+  <meta name="citation_title" content="A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention">
+  <meta name="citation_author" content="Jintao Zhang">
+  <meta name="citation_author" content="Rundong Su">
+  <meta name="citation_author" content="Chunyu Liu">
+  <meta name="citation_author" content="Jia Wei">
+  <meta name="citation_author" content="Ziteng Wang">
+  <meta name="citation_author" content="Pengle Zhang">
+  <meta name="citation_author" content="Haoxu Wang">
+  <meta name="citation_author" content="Huiqiang Jiang">
+  <meta name="citation_author" content="Haofeng Huang">
+  <meta name="citation_author" content="Chendong Xiang">
+  <meta name="citation_author" content="Haocheng Xi">
+  <meta name="citation_author" content="Shuo Yang">
+  <meta name="citation_author" content="Xingyang Li">
+  <meta name="citation_author" content="Yuezhou Hu">
+  <meta name="citation_author" content="Tianyu Fu">
+  <meta name="citation_author" content="Tianchen Zhao">
+  <meta name="citation_author" content="Yicheng Zhang">
+  <meta name="citation_author" content="Youhe Jiang">
+  <meta name="citation_author" content="Chang Chen">
+  <meta name="citation_author" content="Kai Jiang">
+  <meta name="citation_author" content="Huayu Chen">
+  <meta name="citation_author" content="Min Zhao">
+  <meta name="citation_author" content="Xiaoming Xu">
+  <meta name="citation_author" content="Jun Zhu">
+  <meta name="citation_author" content="Jianfei Chen">
+  <meta name="citation_publication_date" content="2025-08-19">
+  <meta name="citation_pdf_url" content="https://attention-survey.github.io/files/Attention_Survey.pdf">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">A Survey of Efficient Attention Methods:  
+              <br> Hardware-efficient, Sparse, Compact, and Linear Attention
+
+            </h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://jt-zhang.github.io/" target="_blank">Jintao Zhang</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Rundong Su</a><sup>*1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Chunyu Liu</a><sup>*1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Jia Wei</a><sup>*1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Ziteng Wang</a><sup>*1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Pengle Zhang</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Haoxu Wang</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Huiqiang Jiang</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Haofeng Huang</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Chendong Xiang</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://haochengxi.github.io/">Haocheng Xi</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://andy-yang-1.github.io/">Shuo Yang</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="#">Xingyang Li</a><sup>3</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Yuezhou Hu</a><sup>2</sup>,</span>
+              <span class="author-block">
+                <a href="https://github.com/fuvty" target="_blank">Tianyu Fu</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Tianchen Zhao</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Yicheng Zhang</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Youhe Jiang</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Chang Chen</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Kai Jiang</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Huayu Chen</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Min Zhao</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Xiaoming Xu</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://ml.cs.tsinghua.edu.cn/~jun/" target="_blank">Jun Zhu</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://ml.cs.tsinghua.edu.cn/~jianfei/" target="_blank">Jianfei Chen</a><sup>1</sup></span>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup> Tsinghua University</span>
+              <span class="author-block"><sup>2</sup> UC Berkeley  </span>
+              <span class="author-block"><sup>3</sup> MIT</span>
+              <span class="eql-cntrb"><small><br><sup>*</sup>Co-second authorship</small></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Arxiv PDF link -->
+                <span class="link-block">
+                  <a href="files/Attention_Survey.pdf" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- Github link -->
+                <span class="link-block">
+                  <a href="https://github.com/attention-survey/Efficient_Attention_Survey" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Github</span>
+                  </a>
+                </span>
+
+                <!-- ArXiv abstract Link -->
+                <!-- <span class="link-block">
+                  <a href="https://arxiv.org/abs/2502.01776" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-4">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              In modern transformers, the attention operation is the only component with a time complexity of \(\mathcal{O}(N^2)\), whereas all other operations scale linearly as \(\mathcal{O}(N)\), 
+              where \(N\) denotes the sequence length. As sequence lengths in generative models (e.g., language and video generation) continue to increase, 
+              improving the efficiency of attention has become increasingly critical. 
+              Recently, numerous excellent works have been proposed to enhance the computational efficiency of attention operation. Broadly, these works can be classified into four categories: (1) Hardware-efficient attention: Optimizing attention computation efficiency by leveraging hardware characteristics.  (2) Sparse attention: Selectively performing a subset of computations in attention while omitting others. (3) Compact attention: Compressing the KV cache of attention by weight sharing or low rank decomposition while keeping computational cost unchanged, as with a full‑sized KV cache. (4) Linear attention: Redesigning the computational formulation of attention to achieve \(\mathcal{O}(N)\) time complexity. 
+              In this paper, we present a comprehensive survey of these efficient attention methods. 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview of methods -->
+  <!-- 方法概述 -->
+  <section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-4">Overview</h2>
+                <div class="content has-text-justified">
+                  <p>
+                     Efficient attention methods aim to reduce the time or memory costs of the standard attention mechanism. These approaches can be divided into four main categories:
+                 </p>
+                 <ul style="text-align: left; margin-left: 2em; margin-top: 1em;">
+                     <li><strong>Hardware-efficient attention:</strong> Optimizes the implementation by better utilizing modern GPU features like tiling and kernel fusion, without changing the attention logic.</li>
+                     <li><strong>Compact attention:</strong> Compresses the KV cache using techniques like weight sharing or low-rank decomposition to reduce memory overhead during inference.</li>
+                     <li><strong>Sparse attention:</strong> Reduces computational cost by skipping calculations for non-critical parts of the attention matrix, using either fixed or dynamic sparse masks.</li>
+                     <li><strong>Linear attention:</strong> Removes the softmax operation to reorder matrix multiplications, avoiding the O(N²) time complexity and reducing it to linear O(N).</li>
+                 </ul>
+             </div>
+                <!-- Placeholder for the overview figure -->
+                <!-- 概述图占位符 -->
+                <div class="container has-text-centered">
+                    <figure class="image is-inline-block" style="width: 100%;">
+                        <img src="files\fig2.png" alt="Overview of four efficient attention methods">
+                        <figcaption style="font-size: 0.8em; color: gray;">
+                            Figure 1: Overview of efficient attention methods.
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <!-- Hardware-Efficient Attention -->
+  <!-- 硬件高效注意力 -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-4 has-text-centered">1. Hardware-Efficient Attention</h2>
+          <div class="content has-text-justified">
+            <p>
+              On modern GPUs, an operation's speed is limited by either computation (making it <strong>compute-bound</strong>) or memory data transfer (making it <strong>memory-bound</strong>). Hardware-efficient attention methods directly target these bottlenecks by optimizing how computations are performed and data is moved through the GPU's memory hierarchy.
+            <p>
+                Corresponding to the two stages in LLM inference (prefilling and decoding), <em>Hardware-efficient Attention</em> can be divided into two categories: 
+            </p>
+            <li>
+              <strong>Prefilling methods</strong>, inspired by FlashAttention, partition \(Q\), \(K\), and \(V\) into blocks \(\mathbf{Q}_i\), \(\mathbf{K}_i\), \(\mathbf{V}_i\). They compute each output block \(\mathbf{O}_i\) iteratively as follows:
+            </li>
+            <div style="padding: 0.5em; border-radius: 6px; margin: 1em 0; text-align: center;">
+            $$
+              \hat{\mathbf{Q}}, \hat{\mathbf{K}}, \hat{\mathbf{V}} = \Psi(\mathbf{Q}), \Psi(\mathbf{K}), \Theta(\mathbf{V}).
+            $$
+            $$
+              \mathbf{S} = \hat{\mathbf{Q}} \hat{\mathbf{K}}^\top, \quad \hat{\mathbf{P}} = \Theta (\mathrm{softmax}(\mathbf{S})), \quad \mathbf{O} = \hat{\mathbf{P}} \hat{\mathbf{V}},
+            $$
+            </div>
+            <p>
+              where \(\Psi(\cdot), \Theta(\cdot)\) are preprocess functions to accelerate computation, e.g., quantization functions.
+            </p>
+            <li>
+              <strong>Decoding methods</strong> also partition \(K\) and \(V\) into blocks, but their input \(\mathbf{q}\) is a vector, so the output vector \(\mathbf{o}\) is computed as follows:
+            </li>
+            <div style="padding: 0.5em; border-radius: 6px; margin: 1em 0; text-align: center;">
+            $$
+              \hat{\mathbf{K}}, \hat{\mathbf{V}} = \Psi(\mathbf{K}), \Theta(\mathbf{V}).
+            $$
+            $$
+              \mathbf{s} = \mathbf{q} \hat{\mathbf{K}}^\top, \quad \mathbf{p} = \mathrm{softmax}(\mathbf{s}), \quad \mathbf{o} = \mathbf{p} \hat{\mathbf{V}}.
+            $$
+            </div>
+             <p>
+              where \(\Psi(\cdot), \Theta(\cdot)\) are KV cache preprocess functions.
+            </p>
+          </div>
+
+           <!-- Table and description -->
+           <div class="content has-text-justified" style="margin-top: 2em;">
+              <p>
+                We summarize these hardware-efficient methods in <a href="#table2" class="has-text-link">Table 1</a>. 
+                The \(\Psi(\cdot)\) and \(\Theta(\cdot)\) types refer to different pre-processing functions, 
+                such as splitting the KV cache across the GPU's SMs or reallocating it into efficient formats like pages (e.g., PagedAttention) to boost I/O speed.
+              </p>
+          </div>
+            <div class="container has-text-centered" id="table2">
+              <figure class="image is-inline-block" style="width: 100%;">
+                <figcaption style="font-size: 0.8em; color: gray;">
+                  Table 1: Summary of hardware-efficient attention methods.
+                </figcaption>
+                  <img src="files\table2.png" alt="Overview of four efficient attention methods">
+              </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Compact Attention -->
+  <!-- 紧凑注意力 -->
+  <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-4">2. Compact Attention</h2>
+          <div class="content has-text-justified">
+            <p>
+               Compact attention methods are designed to reduce the memory consumption of the KV cache during LLM inference. In MHA, we store the full-resolution KV matrices exactly as used in computation, causing the KV cache size to grow rapidly. Compact attention methods decouple storage KV from computation KV, storing compressed KV states and expanding them for computation. This approach significantly reduces storage KV size compared to MHA, lowering memory usage, while preserving the computation KV size to prevent significant performance degradation.
+             </p>
+             
+             <p>
+               The general formulation can be expressed as follows.
+             </p>
+             
+             <div style="padding: 0.5em; border-radius: 6px; margin: 1em 0; text-align: center;">
+             $$
+             \begin{align}
+                 q, \mathcal{K}_c, \mathcal{V}_c &= \text{proj}_\mathcal{Q}(x), \text{proj}_{\mathcal{K}_c}(X), \text{proj}_{\mathcal{V}_c}(X). \\
+                 \mathcal{K}, \mathcal{V} &= \text{expand}_\mathcal{K}({\mathcal{K}_c}), \text{expand}_\mathcal{V}({\mathcal{V}_c}). \\
+                 o &= \text{MHA}(q, \mathcal{K}, \mathcal{V}).
+             \end{align}
+             $$
+             </div>
+             
+             <p>
+               where \(\mathcal{K} = [K^{(1)}, \dots, K^{(h)}] \in \mathbb{R}^{N \times D}\) denotes the concatenation of \(h\) attention head key matrices, with \(K^{(i)} \in \mathbb{R}^{N \times d}\) representing the key matrix of head \(i\) and \(D = h d\). The same notation applies to \(q\) and \(\mathcal{V}\). Here, \(x \in \mathbb{R}^{D_m}\) is the hidden state of the current token, \(X \in \mathbb{R}^{n \times D_m}\) is the matrix of hidden states for the context tokens, \(\text{proj}(\cdot)\) and \(\text{expand}(\cdot)\) denote the projection and expansion functions, respectively, and \(\text{MHA}(\cdot)\) denotes the multi-head attention operation.
+             </p>
+          </div>
+
+          <!-- Table and description -->
+          <div class="content has-text-justified" style="margin-top: 2em;">
+            <p>
+              We summarize the KV cache size for each token, total parameters for attention, 
+              and expansion function type for compact attention methods in <a href="#table3" class="has-text-link">Table 2</a>. 
+            </p>
+        </div>
+          <div class="container has-text-centered" id="table3">
+            <figure class="image is-inline-block" style="width: 100%;">
+              <figcaption style="font-size: 0.8em; color: gray;">
+                Table 2: Summary of compact attention methods.
+              </figcaption>
+                <img src="files\table3.png" alt="Overview of four efficient attention methods">
+            </figure>
+        </div>
+
+        
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-4">3. Sparse Attention</h2>
+          <div class="content has-text-justified">
+            <p>
+              The attention map \(P = \mathrm{Softmax}(QK^\top / \sqrt{d})\) exhibits inherent sparsity, 
+              as the softmax operation often creates many values approaching zero. 
+              <em>Sparse attention</em> methods exploit such sparsity to accelerate attention by two steps. <strong>First</strong>, 
+              it constructs a <em>sparse mask</em> \(M\), 
+              which determines whether to compute or skip specific elements in the attention map \(P\). 
+              <strong>Second</strong>, it computes attention only for the parts corresponding to the <em>sparse mask</em> \(M\).
+            </p>
+            
+            <div style="padding: 0.5em; border-radius: 6px; margin: 1em 0; text-align: center;">
+              $$
+              \begin{align}
+                P &= \mathrm{Softmax}(M + QK^\top / \sqrt{d}). \\
+                O &= PV.
+              \end{align}
+              $$
+            </div>
+            
+            <p>
+              Where \(M\) is an \(N \times N\) matrix whose elements are either 0 or \(-\infty\). \(M_{i,j} = 0\) specifies that both the attention score \(Q_iK_j^T\) and 
+              its corresponding output \(P_{i,j}V_j\) should be computed, while \(M_{i,j} = -\infty\) indicates these computations should be skipped.
+            </p>
+            
+            <p>
+              There are two distinct categories of sparse attention methods based on how the sparse mask is generated:
+            </p>
+            
+            <ol style="text-align: left; margin-left: 2em; margin-top: 1em;">
+              <li><strong>Pattern-based method</strong> relies on predefined sparsity patterns derived from empirical observations, where the positions of \(-\infty\) entries in \(M\) follow fixed geometric shapes (e.g., a sliding window shape).</li>
+              
+              <li><strong>Dynamic sparse attention</strong> computes the <em>sparse mask</em> \(M\) adaptively during runtime based on some input-dependent functions (e.g., \(M_{i,j} = -\infty\) if \(\mathrm{pool}(Q_i) \mathrm{pool}(K_j^T) < \tau\) for a threshold \(\tau\), where \(\mathrm{pool}(\cdot)\) could be mean pooling over tokens).</li>
+            </ol>
+  
+          </div>
+          <div class="content has-text-justified" style="margin-top: 2em;">
+            <p>
+              We summarize sparse attention methods based on their sparse mask \(M\) (pattern-based or dynamic), 
+              whether it can reduce KV cache storage, whether they need to train a model, and applicability to language models and diffusion transformers in <a href="#table4" class="has-text-link">Table 3</a>. 
+            </p>
+          </div>
+          <div class="container has-text-centered" id="table4">
+            <figure class="image is-inline-block" style="width: 100%;">
+              <figcaption style="font-size: 0.8em; color: gray;">
+                Table 3: Summary of sparse attention methods.
+              </figcaption>
+                <img src="files\table4.png" alt="Overview of four efficient attention methods">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Linear Attention -->
+  <!-- 线性注意力 -->
+  <section class="section hero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-4">4. Linear Attention</h2>
+  
+          <div class="content has-text-justified">
+            <p>
+              Linear attention methods reduce the computational complexity from \(O(N^2)\) to \(O(N)\) by replacing the softmax function with a kernel function. This allows for a reordering of matrix multiplications, avoiding the explicit computation of the N×N attention matrix. For autoregressive tasks, these methods can be formulated in a recurrent manner, using a fixed-size state that is updated at each step. This makes them highly efficient for inference on very long sequences.
+            </p>
+          </div>
+
+          <h4 class="title is-5" style="margin-top: 2.5em;">Naive Formulation</h4>
+          <div class="content has-text-justified">
+            <p>
+              $$ 
+              \begin{aligned}
+                  H_t &= H_{t-1} + \phi(k_t)^\top v_t     \\
+                  o_t &= \phi(q_t)H_t
+              \end{aligned}
+            $$
+            </p>
+          
+          </div>
+  
+          <h4 class="title is-5" style="margin-top: 2.5em;">Computation Forms</h4>
+          
+          <div class="content has-text-justified">
+            <p>
+              <a href="#fig3" class="has-text-link">Figure 2</a> shows three computation forms of linear attention.
+            </p>
+          </div>
+          <div class="container has-text-centered" id="fig3">
+            <figure class="image is-inline-block" style="width: 100%;">
+              <img src="files/fig3.png" alt="Three computation forms of linear attention">
+              <figcaption style="font-size: 0.8em; color: gray;">
+                Figure 2: Three computation forms of linear attention.
+              </figcaption>
+            </figure>
+          </div>
+          <div class="content has-text-justified" style="margin-top: 1em;">
+            <p>
+              <strong>Linear Parallel Form.</strong> This form calculates the output \(O\), using \(O=\phi(Q)(\phi(K)^\top V)\), by computing the \(\phi(K)^T V\) first, the computational complexity is decreased to \(O(Nd^2)\). It is highly efficient for the training and inference of non-autoregressive (NAR) tasks, where the entire sequence is processed simultaneously. For autoregressive training, forcing causality with a mask \(O = (\phi(Q) \phi(K)^\top \odot M)V\).
+            </p>
+            <p>
+              <strong>Recurrent Form.</strong> This form introduces a fixed-size state \(H_t\) that is updated recurrently: \(H_t = H_{t-1} + \phi(k_t)^\top v_t\). The output is then computed as \(o_t=\phi(q_t)H_t\). When computing, it first computes the \(\phi(k_t)^T v_t\) and then updates the hidden state \(H_t\), finally compute \(o_t=\phi(q_t)H_t\).
+            </p>
+            <div>
+              <p>
+                <strong>Chunk-wise Form.</strong>  This form is a hybrid solution designed for autoregressive training, resolving the issues of the previous forms. It divides the sequence into fixed-size chunks and uses a dual strategy: Attention is computed in quadratic parallel form within each chunk to maximize parallelization. Causality is maintained by passing a recurrent state between chunks. As the figure shows, the final attention output for each chunk is the sum of two distinct components:
+              </p>
+              <ul style="margin-left: 2em; margin-top: 1em; margin-bottom: 1em;">
+                <li>
+                  <strong>Intra-chunk Attention:</strong> This part is computed using standard, parallel masked self-attention on the Query, Key, and Value matrices within the current chunk. It captures local dependencies inside the chunk.
+                </li>
+                <li>
+                  <strong>Inter-chunk Attention:</strong> This part incorporates historical information from all <em>previous</em> chunks. It is computed by combining the current chunk's Query with the hidden state passed from the prior chunk.
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <h4 class="title is-5" style="margin-top: 2.5em;">Four Categories of Linear Attention</h4>
+          <div class="content has-text-justified">
+            <p>
+              To enable the fixed-size hidden state \(H_t\)  to dynamically hold the most relevant information, the forget and select gates were introduced. Then the \(H_t\) update can be formulated as:
+            $$
+                H_t = G_f^{(t)} \odot H_{t-1} + G_s^{(t)} \odot \phi(k_t)^\top v_t.
+            $$
+            \(G_f^{(t)} \) acts as a forget gate, deciding how much historical information (\(H_{t-1}\)) to keep, and \(G_s^{(t)}\) serves as a select gate, determining how much current information to hold.
+            The computation can be shown as <a href="#fig4" class="has-text-link">Figure 3</a>.
+            </p>
+          </div>
+          <div class="container has-text-centered" id="fig4">
+            <figure class="image is-inline-block" style="width: 60%;">
+              <img src="files\fig4.png" alt="Linear Attention with Gates">
+              <figcaption style="font-size: 0.8em; color: gray;">
+                Figure 3: Linear attention with forget and select gates.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="container has-text-justified">
+            <p>
+              Linear attention methods can be classified by their hidden state update method. The first three categories rely on direct computation of \(H_t\):
+            </p>
+            
+            <ul style="list-style-type: none; margin-left: 0;">
+              
+              <li style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                  <p>
+                    <strong>(1) Naive Linear Attention:</strong> Linear attention without gates, i.e., both \(G_f^{(t)}\) and \(G_s^{(t)}\) are fixed as \(\mathbf{1}^\top \mathbf{1}\), <a href="#table4" class="has-text-link">Table 4</a> shows some typical naive linear attention methods.
+                  </p>
+                  <div class="container has-text-centered" id="table4">
+                  <figure class="has-text-centered" style="width: 100%;">
+                    <figcaption style="font-size: 0.8em; color: gray; margin-top: 0.5em;">Table 4: Summary of naive linear attention methods.</figcaption>
+                    <img src="files\table5.png" alt="Table 4: Summary of naive linear attention methods">                    
+                  </figure>
+                  </div>
+                </div>
+              </li>
+            
+              <li style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                  <p>
+                    <strong>(2) Linear Attention with a Forget Gate:</strong> Only \(G_s^{(t)}\) is fixed as \(\mathbf{1}^\top \mathbf{1}\), while the forget gate \(G_f^{(t)}\) is predefined or input-dependent, <a href="#table5" class="has-text-link">Table 5</a> shows some typical linear attention methods with a forget gate. All the complexities shown in the table are the complexities of the training phase.
+                  </p>
+                  <div class="container has-text-centered" id="table5">
+                  <figure class="has-text-centered" style="width: 100%;">
+                    <figcaption style="font-size: 0.8em; color: gray; margin-top: 0.5em;">Table 5: Summary of linear attention with forget gate only.</figcaption>
+                    <img src="files\table6.png" alt="Table 5: Summary of linear attention methods with a forget gate">
+                  </figure>
+                </div>
+              </li>
+            
+              <li style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                  <p>
+                    <strong>(3) Linear Attention with both Forget and Select Gates:</strong> both \(G_f^{(t)}\) and \(G_s^{(t)}\) are predefined or input-dependent rather than fixed as \(\mathbf{1}^\top \mathbf{1}\). <a href="#table6" class="has-text-link">Table 6</a> shows some typical linear attention methods with forget and select gates. All complexities shown in the table are the complexities of the training phase.
+                  </p>
+                  <div class="container has-text-centered" id="table6">
+                  <figure class="has-text-centered" style="width: 100%;">
+                    <figcaption style="font-size: 0.8em; color: gray;">
+                      Table 6: Summary of linear attention methods with forget and select gates.
+                    </figcaption>
+                    <img src="files\table7.png" alt="Table 6: Summary of linear attention methods with forget and select gates">
+                  </figure>
+                  </div>
+                </div>
+              </li>
+            
+            </ul>
+          </div>
+  
+          <h4 class="title is-5" style="margin-top: 2.5em;">Test-Time Training</h4>
+          <div class="content has-text-justified">
+            <p>
+              Test-Time Training (TTT) views the hidden state \(H_t\) as a set of learnable parameters, also called `fast weights'. TTT continuously update the hidden state via gradient descent during both training and inference.
+              This can be shown as <a href="#fig5" class="has-text-link">Figure 4</a>.  This hidden states update process is different with the first three categories of linear attention methods, thus we categorize it as the <strong>fourth category</strong> of linear attention in the paper.
+            </p>
+          </div>
+          <div class="container has-text-centered" id="fig5">
+            <figure class="image is-inline-block" style="width: 60%;">
+              <img src="files\fig5.png" alt="Test-Time Training">
+              <figcaption style="font-size: 0.8em; color: gray;">
+                Figure 4: Test-Time Training.
+              </figcaption>
+            </figure>
+          </div>
+      <div class="content has-text-justified" style="margin-top: 2em;">
+            <p>
+                <strong>For the full paper, please see <a href="files/Attention_Survey.pdf" target="_blank"><u>our paper</u></a>.</strong>
+            </p>
+          </div>
+  		          </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code id="bibtex-code">
+        @article{zhang2025efficient,
+          title={A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention},
+          author={Zhang, Jintao and Su, Rundong and Liu, Chunyu and Wei, Jia and Wang, Ziteng and Zhang, Pengle and Wang, Haoxu and Jiang, Huiqiang and Huang, Haofeng and Xiang, Chendong and Xi, Haocheng and Yang, Shuo and Li, Xingyang and Hu, Yuezhou and Fu, Tianyu and Zhao, Tianchen and Zhang, Yicheng and Jiang, Youhe and Chen, Chang and Jiang, Kai and Chen, Huayu and Zhao, Min and Xu, Xiaoming and Zhu, Jun and Chen, Jianfei},
+          year={2025}
+        }
+    </code></pre>
+      <button class="button is-dark" onclick="copyBibTex()">Copy BibTeX</button>
+    </div>
+  </section>
+
+  <script>
+    function copyBibTex() {
+      var copyText = document.getElementById("bibtex-code").innerText;
+      navigator.clipboard.writeText(copyText).then(function () {
+        alert("BibTeX copied to clipboard!");
+      }, function (err) {
+        alert("Failed to copy BibTeX: ", err);
+      });
+    }
+  </script>
+  <!--End BibTex citation -->
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the source code of this website, we just ask that you link back to this page in the
+              footer. <br> This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Statcounter tracking code -->
+
+  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+  <!-- End of Statcounter Code -->
+
+</body>
+
+
+</html>
+
