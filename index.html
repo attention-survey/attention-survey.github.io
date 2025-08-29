@@ -2,67 +2,33 @@
 <html>
 
 <head>
-  
   <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG" />
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG" />
+  <meta property="og:url" content="URL OF THE WEBSITE" />
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
-  <!-- Meta tags for SEO and social media banners -->
-  <meta name="description" content="A comprehensive survey of efficient attention methods, covering hardware-efficient, sparse, compact, and linear attention.">
 
-  <!-- Open Graph (Facebook, LinkedIn, WeChat, etc.) -->
-  <meta property="og:title" content="A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention" />
-  <meta property="og:description" content="We present a comprehensive overview of efficient attention methods, categorizing recent advances into hardware-efficient, sparse, compact, and linear approaches." />
-  <meta property="og:url" content="https://attention-survey.github.io/" />
-  <meta property="og:image" content="https://attention-survey.github.io/files/fig2.png" />
-  <meta property="og:image:width" content="2118" />
-  <meta property="og:image:height" content="1928" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:title" content="A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention">
-  <meta name="twitter:description" content="A comprehensive survey of efficient attention methods: hardware-efficient, sparse, compact, and linear attention.">
-  <meta name="twitter:image" content="https://attention-survey.github.io/files/fig2.png">
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
   <meta name="twitter:card" content="summary_large_image">
-
-  <!-- SEO keywords -->
-  <meta name="keywords" content="efficient attention, transformer, survey, machine learning, deep learning, sparse attention, linear attention, compact attention, hardware-efficient">
-
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention</title>
+
+  <title>Efficient Attention Methods</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
-  <!-- Google Scholar metadata -->
-  <meta name="citation_title" content="A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention">
-  <meta name="citation_author" content="Jintao Zhang">
-  <meta name="citation_author" content="Rundong Su">
-  <meta name="citation_author" content="Chunyu Liu">
-  <meta name="citation_author" content="Jia Wei">
-  <meta name="citation_author" content="Ziteng Wang">
-  <meta name="citation_author" content="Pengle Zhang">
-  <meta name="citation_author" content="Haoxu Wang">
-  <meta name="citation_author" content="Huiqiang Jiang">
-  <meta name="citation_author" content="Haofeng Huang">
-  <meta name="citation_author" content="Chendong Xiang">
-  <meta name="citation_author" content="Haocheng Xi">
-  <meta name="citation_author" content="Shuo Yang">
-  <meta name="citation_author" content="Xingyang Li">
-  <meta name="citation_author" content="Yuezhou Hu">
-  <meta name="citation_author" content="Tianyu Fu">
-  <meta name="citation_author" content="Tianchen Zhao">
-  <meta name="citation_author" content="Yicheng Zhang">
-  <meta name="citation_author" content="Youhe Jiang">
-  <meta name="citation_author" content="Chang Chen">
-  <meta name="citation_author" content="Kai Jiang">
-  <meta name="citation_author" content="Huayu Chen">
-  <meta name="citation_author" content="Min Zhao">
-  <meta name="citation_author" content="Xiaoming Xu">
-  <meta name="citation_author" content="Jun Zhu">
-  <meta name="citation_author" content="Jianfei Chen">
-  <meta name="citation_publication_date" content="2025-08-19">
-  <meta name="citation_pdf_url" content="https://attention-survey.github.io/files/Attention_Survey.pdf">
-  <meta name="citation_abstract" content="In modern transformers, the attention operation is the only component with a time complexity of O(N²), whereas all other operations scale linearly as O(N), where N denotes the sequence length. As sequence lengths in generative models (e.g., language and video generation) continue to increase, improving the efficiency of attention has become increasingly critical. Recently, numerous excellent works have been proposed to enhance the computational efficiency of attention operation. Broadly, these works can be classified into four categories: (1) Hardware-efficient attention: Optimizing attention computation efficiency by leveraging hardware characteristics.  (2) Sparse attention: Selectively performing a subset of computations in attention while omitting others. (3) Compact attention: Compressing the KV cache of attention by weight sharing or low rank decomposition while keeping computational cost unchanged, as with a full sized KV cache. (4) Linear attention: Redesigning the computational formulation of attention to achieve O(N) time complexity. In this paper, we present a comprehensive survey of these efficient attention methods.">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="static/css/bulma-slider.min.css">
@@ -70,7 +36,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
 
-  <!-- JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
@@ -138,6 +103,9 @@
                 <a href="#">Yicheng Zhang</a><sup>1</sup>,</span>
               </span>
               <span class="author-block">
+                <a href="#">Boqun Cao</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
                 <a href="#">Youhe Jiang</a><sup>1</sup>,</span>
               <span class="author-block">
                 <a href="#">Chang Chen</a><sup>1</sup>,</span>
@@ -153,6 +121,12 @@
               </span>
               <span class="author-block">
                 <a href="#">Xiaoming Xu</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Yi Wu</a><sup>1</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Fan Bao</a><sup>1</sup>,</span>
               </span>
               <span class="author-block">
                 <a href="https://ml.cs.tsinghua.edu.cn/~jun/" target="_blank">Jun Zhu</a><sup>1</sup>,</span>
@@ -289,7 +263,7 @@
             $$
             </div>
             <p>
-              where \(\Psi(\cdot), \Theta(\cdot)\) are preprocess functions to accelerate computation, e.g., quantization functions in SageAttention.
+              where \(\Psi(\cdot), \Theta(\cdot)\) are preprocess functions to accelerate computation, e.g., quantization functions.
             </p>
             <li>
               <strong>Decoding methods</strong> also partition \(K\) and \(V\) into blocks, but their input \(\mathbf{q}\) is a vector, so the output vector \(\mathbf{o}\) is computed as follows:
@@ -594,11 +568,11 @@
             </figure>
           </div>
       <div class="content has-text-justified" style="margin-top: 2em;">
-            <p>
-                <strong>For the full paper, please see <a href="files/Attention_Survey.pdf" target="_blank"><u>our paper</u></a>.</strong>
-            </p>
-          </div>
-  		          </div>
+            <p>
+                <strong>For the full paper, please see <a href="files/Attention_Survey.pdf" target="_blank">our paper</a>.</strong>
+            </p>
+          </div>
+  		          </div>
       </div>
     </div>
   </section>
@@ -609,11 +583,11 @@
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code id="bibtex-code">
-@article{zhang2025efficient,
-  title={A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention},
-  author={Zhang, Jintao and Su, Rundong and Liu, Chunyu and Wei, Jia and Wang, Ziteng and Zhang, Pengle and Wang, Haoxu and Jiang, Huiqiang and Huang, Haofeng and Xiang, Chendong and Xi, Haocheng and Yang, Shuo and Li, Xingyang and Hu, Yuezhou and Fu, Tianyu and Zhao, Tianchen and Zhang, Yicheng and Jiang, Youhe and Chen, Chang and Jiang, Kai and Chen, Huayu and Zhao, Min and Xu, Xiaoming and Zhu, Jun and Chen, Jianfei},
-  year={2025}
-}
+        @article{zhang2025efficient,
+          title={A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention},
+          author={Zhang, Jintao and Su, Rundong and Liu, Chunyu and Wei, Jia and Wang, Ziteng and Zhang, Pengle and Wang, Haoxu and Jiang, Huiqiang and Huang, Haofeng and Xiang, Chendong and Xi, Haocheng and Yang, Shuo and Li, Xingyang and Hu, Yuezhou and Fu, Tianyu and Zhao, Tianchen and Zhang, Yicheng and Cao, Boqun and Jiang, Youhe and Chen, Chang and Jiang, Kai and Chen, Huayu and Zhao, Min and Xu, Xiaoming and Wu, Yi and Bao, Fan and Zhu, Jun and Chen, Jianfei},
+          year={2025}
+        }
     </code></pre>
       <button class="button is-dark" onclick="copyBibTex()">Copy BibTeX</button>
     </div>
@@ -664,8 +638,3 @@
 
 
 </html>
-
-
-
-
-
