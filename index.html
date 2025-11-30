@@ -55,8 +55,8 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title">A Survey of Efficient Attention Methods:  
-              <br> Hardware-efficient, Sparse, Compact, and Linear Attention
+            <h1 class="title is-2 publication-title">Efficient Attention Methods:  Hardware-efficient, 
+              <br> Sparse, Compact, and Linear Attention
 
             </h1>
             <div class="is-size-5 publication-authors">
@@ -93,6 +93,8 @@
                 <a href="#">Xingyang Li</a><sup>3</sup>,</span>
               </span>
               <span class="author-block">
+                <a href="#">Yilong Zhao</a><sup>3</sup>,</span>
+              <span class="author-block">
                 <a href="#">Yuezhou Hu</a><sup>2</sup>,</span>
               <span class="author-block">
                 <a href="https://github.com/fuvty" target="_blank">Tianyu Fu</a><sup>1</sup>,</span>
@@ -127,6 +129,12 @@
               </span>
               <span class="author-block">
                 <a href="#">Fan Bao</a><sup>4</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Ion Stoica</a><sup>2</sup>,</span>
+              </span>
+              <span class="author-block">
+                <a href="#">Joseph E. Gonzalez</a><sup>2</sup>,</span>
               </span>
               <span class="author-block">
                 <a href="https://ml.cs.tsinghua.edu.cn/~jun/" target="_blank">Jun Zhu</a><sup>1</sup>,</span>
@@ -193,11 +201,15 @@
           <h2 class="title is-4">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              In modern transformers, the attention operation is the only component with a time complexity of \(\mathcal{O}(N^2)\), whereas all other operations scale linearly as \(\mathcal{O}(N)\), 
-              where \(N\) denotes the sequence length. As sequence lengths in generative models (e.g., language and video generation) continue to increase, 
-              improving the efficiency of attention has become increasingly critical. 
-              Recently, numerous excellent works have been proposed to enhance the computational efficiency of attention operation. Broadly, these works can be classified into four categories: (1) Hardware-efficient attention: Optimizing attention computation efficiency by leveraging hardware characteristics.  (2) Sparse attention: Selectively performing a subset of computations in attention while omitting others. (3) Compact attention: Compressing the KV cache of attention by weight sharing or low rank decomposition while keeping computational cost unchanged, as with a full‑sized KV cache. (4) Linear attention: Redesigning the computational formulation of attention to achieve \(\mathcal{O}(N)\) time complexity. 
-              In this paper, we present a comprehensive survey of these efficient attention methods. 
+              In modern transformer architectures, the attention operation is the only component with a time complexity of O(N2), whereas all other operations scale linearly as O(N), where N is the sequence length. 
+              Recently, a plethora of methods have been proposed to improve the computational efficiency of the attention operation, which are very critical for developing large-scale models.
+              In this paper, we present a unified taxonomy and a comprehensive survey of efficient attention methods. 
+              We categorize existing approaches into four classes: (1) Hardware-efficient attention: Optimizes attention computation efficiency by leveraging hardware characteristics; 
+              (2) Sparse attention: Selectively performs a subset of computations in attention while omitting others; 
+              (3) Compact attention: Compresses the KV cache (e.g., via weight sharing or low-rank decomposition) without changing the computation cost of using a full-sized KV cache; 
+              and (4) Linear attention: Reformulate the attention computation to achieve O(N) time complexity. 
+              For each category, we also develop a unified analysis framework and offer perspectives on open challenges and promising directions for future research on efficient attention. To the best of our knowledge, this survey is the most comprehensive survey on efficient attention.
+              Our taxonomy of hardware-efficient, compact, sparse, and linear attention covers nearly all existing efficient attention methods, which prior surveys do not.
             </p>
           </div>
         </div>
@@ -585,7 +597,7 @@
       <h2 class="title">BibTeX</h2>
       <pre><code id="bibtex-code">
 @article{zhangsurvey,
-  title={A Survey of Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention},
+  title={Efficient Attention Methods: Hardware-efficient, Sparse, Compact, and Linear Attention},
   author={Zhang, Jintao and Su, Rundong and Liu, Chunyu and Wei, Jia and Wang, Ziteng and Zhang, Pengle and Wang, Haoxu and Jiang, Huiqiang and Huang, Haofeng and Xiang, Chendong and others}
 }
     </code></pre>
